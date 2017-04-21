@@ -1,4 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/07 09:38:40 by cfatrane          #+#    #+#              #
+#*   Updated: 2017/04/20 18:40:02 by ygokol           ###   ########.fr       *#
+#                                                                              #
+# **************************************************************************** #
+
+# Binary
+
 NAME = ygokol.filler
+
+# Path
 
 SRC_PATH = ./srcs/
 
@@ -6,6 +22,7 @@ OBJ_PATH = ./objs/
 
 INC_PATH = ./
 
+# Name
 
 SRC_NAME =	main.c			\
 			take_map.c		\
@@ -17,6 +34,7 @@ SRC_NAME =	main.c			\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
+# Files
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
