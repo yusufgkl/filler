@@ -3,86 +3,78 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
+#    By: ygokol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/02/07 09:38:40 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/04/20 18:40:02 by ygokol           ###   ########.fr       *#
+#    Created: 2017/04/21 19:40:51 by ygokol            #+#    #+#              #
+#    Updated: 2017/04/21 20:53:19 by ygokol           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Binary
-
 NAME = ygokol.filler
 
-# Path
-
-SRC_PATH = ./srcs/
-
-OBJ_PATH = ./objs/
-
-INC_PATH = ./
-
-# Name
-
-SRC_NAME =	main.c			\
-			take_map.c		\
-			position.c		\
+SRC =		main.c			\
+			map.c		\
+			pos.c		\
 			take_token.c	\
-			push_token.c	\
+			push.c	\
 			check_token.c	\
 			algo.c			\
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
-
-# Files
-
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-
-# Flags
-
-LDFLAGS = -L./libft/
-
-LFT = -lft
+OBJ = $(SRC_NAME:.c=.o)
 
 CC = gcc $(CFLAGS)
-#-fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 
-# Rules
+DEF =		\033[0m
+GRA =		\033[1m
+SOU =		\033[4m
+BLI =		\033[5m
+BLA =		\033[30m
+RED =		\033[31m
+GRE =		\033[32m
+YEL =		\033[33m
+BLU =		\033[34m
+PUR =		\033[35m
+CYA =		\033[36m
+WHI =		\033[37m
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(INC_PATH)
-	@make -C./libft/
-	@echo "\033[34mCreation of $(NAME) ...\033[0m"
-	@$(CC) $(LDFLAGS) $(LFT) $(OBJ) -o $@
-	@echo "\033[32m$(NAME) created\n\033[0m"
+$(NAME):
+	@echo "$(YEL)===== creation de la libft        =====$(DEF)";
+	@make -C libft
+	@echo "$(GRE)===== libft                   [OK]=====$(DEF)";
+	@echo "$(YEL)===== Creation de ygokol.filler   =====$(DEF)";
+	$(CC) -c $(SRC)
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a
+	@echo "$(GRE)===== ygokol.filler cree      [OK]=====$(DEF)";
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -I$(INC_PATH) -o $@ -c $<
+clean:
+	@echo "$(YEL)===== Nettoyage en cours   [CLEAN]=====$(DEF)";
+	@make clean -C libft
+	@echo "$(GRE)===== libft clean             [OK]=====$(DEF)";
+	@rm -rf $(OBJ) winner.o
+	@echo "$(GRE)===== Nettoyage termine       [OK]=====$(DEF)";
 
-clean: cleanlib
-	@echo "\033[33mRemoval of .o files of $(NAME) ...\033[0m"
-	@rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "\033[31mFiles .o deleted\n\033[0m"
+fclean:
+	@echo "$(YEL)===== Nettoyage en cours  [FCLEAN]=====$(DEF)";
+	@make clean -C libft
+	@echo "$(GRE)===== libft clean             [OK]=====$(DEF)";
+	@rm -rf $(NAME)
+	@rm -rf $(OBJ) winner.o
+	@rm -rf libft/libft.a
+	@echo "$(GRE)===== Nettoyage termine       [OK]=====$(DEF)";
 
-cleanlib:
-	@make clean -C ./libft/
+re:
+	@echo "$(GRE)=====          re                 =====$(DEF)";
+	@make fclean all
 
-fclean: clean fcleanlib
-	@echo "\033[33mRemoval of $(NAME)...\033[0m"
-	@rm -f $(NAME)
-	@echo "\033[31mBinary $(NAME) deleted\n\033[0m"
-
-fcleanlib:
-	@make fclean -C ./libft/
-
-re : fclean all
+winner:
+	@echo "$(YEL)===== Creation de winner          =====$(DEF)";
+	@gcc -c winner.c
+	@gcc -o winner libft/libft.a
+	@echo "$(GRE)===== winner cree                 =====$(DEF)";
 
 norme:
 	norminette $(SRC)

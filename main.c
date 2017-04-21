@@ -6,20 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 14:24:44 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/04/21 13:28:28 by ygokol           ###   ########.fr       */
+/*   Updated: 2017/04/21 19:34:31 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
-/*
-void print_debug(t_filler *env)
-{
-
-	printf("user: %c\n oppon: %c\nx_map: %d\nx_token: %d\ny_token: %d\nu_pos_x: %d\nu_pos_y: %d\no_pos_x: %d\no_pos_y: %d\npush_x: %d\npush_y: %d\nalgo: %d\nko: %d\ngameover: %d\n\n", env->user);
-
-}
-*/
 
 int		main(void)
 {
@@ -32,6 +23,8 @@ int		main(void)
 	env->user = (ft_atoi(line + 10) == 1) ? 'O' : 'X';
 	while (42)
 	{
+		if (env->gameover == 1)
+			break ;
 		get_next_line(0, &line);
 		env->y_map = ft_atoi(&line[8]);
 		env->x_map = ft_atoi(&line[11]);
@@ -39,10 +32,7 @@ int		main(void)
 		if (algo(env) == 0)
 			env->ko = 1;
 		push_token(env);
-		if (env->gameover == 1)
-			break ;
 	}
-	//print_debug(env);
 	free(env);
 	return (0);
 }

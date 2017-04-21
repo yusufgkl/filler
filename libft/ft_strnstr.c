@@ -3,33 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygokol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 10:43:19 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/11/22 10:43:23 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/11/30 03:39:46 by ygokol            #+#    #+#             */
+/*   Updated: 2016/11/30 03:39:47 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t i;
-	size_t j;
+	size_t		len2;
 
-	if (*little == '\0')
+	if (!*little)
 		return ((char*)big);
-	i = 0;
-	while (big[i] && i < n)
+	len2 = ft_strlen((char*)little);
+	while (*big && (len-- >= len2))
 	{
-		j = 0;
-		while (big[i + j] == little[j] && (i + j) < n)
-		{
-			j++;
-			if (little[j] == '\0')
-				return ((char*)big + i);
-		}
-		i++;
+		if (*big == *little && ft_memcmp(big, little, len2) == 0)
+			return ((char*)big);
+		big++;
 	}
 	return (NULL);
 }

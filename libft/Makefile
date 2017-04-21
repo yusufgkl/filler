@@ -3,223 +3,169 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
+#    By: ygokol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/02/14 13:02:09 by cfatrane         ###   ########.fr       *#
+#    Created: 2016/11/13 19:02:07 by ygokol            #+#    #+#              #
+#    Updated: 2017/04/21 18:05:56 by ygokol           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Binary
-
 NAME = libft.a
 
-# Path
+SRC = ./ft_atoi.c\
+	  ./ft_bzero.c\
+	  ./ft_foreach.c\
+	  ./ft_isalnum.c\
+	  ./ft_isalpha.c\
+	  ./ft_isascii.c\
+	  ./ft_isdigit.c\
+	  ./ft_isprint.c\
+	  ./ft_itoa.c\
+	  ./ft_memalloc.c\
+	  ./ft_memccpy.c\
+	  ./ft_memchr.c\
+	  ./ft_memcmp.c\
+	  ./ft_memcpy.c\
+	  ./ft_memdel.c\
+	  ./ft_memmove.c\
+	  ./ft_memset.c\
+	  ./ft_putchar.c\
+	  ./ft_putchar_fd.c\
+	  ./ft_putendl.c\
+	  ./ft_putendl_fd.c\
+	  ./ft_putnbr.c\
+	  ./ft_putnbr_fd.c\
+	  ./ft_putstr.c\
+	  ./ft_putstr_fd.c\
+	  ./ft_strcat.c\
+	  ./ft_strchr.c\
+	  ./ft_strclr.c\
+	  ./ft_strcmp.c\
+	  ./ft_strcpy.c\
+	  ./ft_strdel.c\
+	  ./ft_strdup.c\
+	  ./ft_strequ.c\
+	  ./ft_striter.c\
+	  ./ft_striteri.c\
+	  ./ft_strjoin.c\
+	  ./ft_strlcat.c\
+	  ./ft_strlen.c\
+	  ./ft_strmap.c\
+	  ./ft_strmapi.c\
+	  ./ft_strncat.c\
+	  ./ft_strncmp.c\
+	  ./ft_strncpy.c\
+	  ./ft_strnequ.c\
+	  ./ft_strnew.c\
+	  ./ft_strnstr.c\
+	  ./ft_strrchr.c\
+	  ./ft_strsplit.c\
+	  ./ft_strstr.c\
+	  ./ft_strsub.c\
+	  ./ft_strtrim.c\
+	  ./ft_swap.c\
+	  ./ft_tolower.c\
+	  ./ft_toupper.c\
+	  ./ft_numlen.c\
+	  ./ft_charblank.c\
+	  ./ft_strblank.c\
+	  ./ft_tablen.c\
+	  ./ft_lstadd.c\
+	  ./ft_lstdel.c\
+	  ./ft_lstdelone.c\
+	  ./ft_lstiter.c\
+	  ./ft_lstmap.c\
+	  ./ft_lstnew.c\
+	  ./get_next_line.c\
 
-OBJ_PATH = ./objs/
+OBJ = ./ft_atoi.o\
+	  ./ft_bzero.o\
+	  ./ft_foreach.o\
+	  ./ft_isalnum.o\
+	  ./ft_isalpha.o\
+	  ./ft_isascii.o\
+	  ./ft_isdigit.o\
+	  ./ft_isprint.o\
+	  ./ft_itoa.o\
+	  ./ft_memalloc.o\
+	  ./ft_memccpy.o\
+	  ./ft_memchr.o\
+	  ./ft_memcmp.o\
+	  ./ft_memcpy.o\
+	  ./ft_memdel.o\
+	  ./ft_memmove.o\
+	  ./ft_memset.o\
+	  ./ft_putchar.o\
+	  ./ft_putchar_fd.o\
+	  ./ft_putendl.o\
+	  ./ft_putendl_fd.o\
+	  ./ft_putnbr.o\
+	  ./ft_putnbr_fd.o\
+	  ./ft_putstr.o\
+	  ./ft_putstr_fd.o\
+	  ./ft_strcat.o\
+	  ./ft_strchr.o\
+	  ./ft_strclr.o\
+	  ./ft_strcmp.o\
+	  ./ft_strcpy.o\
+	  ./ft_strdel.o\
+	  ./ft_strdup.o\
+	  ./ft_strequ.o\
+	  ./ft_striter.o\
+	  ./ft_striteri.o\
+	  ./ft_strjoin.o\
+	  ./ft_strlcat.o\
+	  ./ft_strlen.o\
+	  ./ft_strmap.o\
+	  ./ft_strmapi.o\
+	  ./ft_strncat.o\
+	  ./ft_strncmp.o\
+	  ./ft_strncpy.o\
+	  ./ft_strnequ.o\
+	  ./ft_strnew.o\
+	  ./ft_strnstr.o\
+	  ./ft_strrchr.o\
+	  ./ft_strsplit.o\
+	  ./ft_strstr.o\
+	  ./ft_strsub.o\
+	  ./ft_strtrim.o\
+	  ./ft_swap.o\
+	  ./ft_tolower.o\
+	  ./ft_toupper.o\
+	  ./ft_numlen.o\
+	  ./ft_charblank.o\
+	  ./ft_strblank.o\
+	  ./ft_tablen.o\
+	  ./ft_lstadd.o\
+	  ./ft_lstdel.o\
+	  ./ft_lstdelone.o\
+	  ./ft_lstiter.o\
+	  ./ft_lstmap.o\
+	  ./ft_lstnew.o\
+	  ./get_next_line.o\
 
-# Name
 
-SRC_NAME =	ft_memset.c				\
-			ft_bzero.c				\
-			ft_memcpy.c				\
-			ft_memccpy.c			\
-			ft_memmove.c			\
-			ft_memchr.c				\
-			ft_memcmp.c				\
-			ft_memalloc.c			\
-			ft_memdel.c				\
-			ft_strlen.c				\
-			ft_strdup.c				\
-			ft_strndup.c			\
-			ft_strdup_c.c			\
-			ft_strcpy.c				\
-			ft_strncpy.c			\
-			ft_strcpy_c.c			\
-			ft_strcat.c				\
-			ft_strncat.c			\
-			ft_strlcat.c			\
-			ft_strchr.c				\
-			ft_strrchr.c			\
-			ft_strstr.c				\
-			ft_strnstr.c			\
-			ft_strcmp.c				\
-			ft_strncmp.c			\
-			ft_atoi.c				\
-			ft_atol.c				\
-			ft_atoll.c				\
-			ft_atou.c				\
-			ft_strnew.c				\
-			ft_strdel.c				\
-			ft_strclr.c				\
-			ft_striter.c			\
-			ft_striteri.c			\
-			ft_strmap.c				\
-			ft_strmapi.c			\
-			ft_strequ.c				\
-			ft_strnequ.c			\
-			ft_strsub.c				\
-			ft_strjoin.c			\
-			ft_strtrim.c			\
-			ft_strsplit.c			\
-			ft_itoa.c				\
-			ft_itoa_base.c			\
-			ft_putchar.c			\
-			ft_putchar_fd.c			\
-			ft_putstr.c				\
-			ft_putstr_n.c			\
-			ft_putstr_fd.c			\
-			ft_putendl.c			\
-			ft_putendl_fd.c			\
-			ft_putnbr.c				\
-			ft_putnbr_fd.c			\
-			ft_putnbr_n.c			\
-			ft_putnbr_base.c		\
-			ft_putnbr_lng.c			\
-			ft_putnbr_uns.c			\
-			ft_isalpha.c			\
-			ft_isdigit.c			\
-			ft_isalnum.c			\
-			ft_isascii.c			\
-			ft_isprint.c			\
-			ft_tolower.c			\
-			ft_toupper.c			\
-			ft_islower.c			\
-			ft_isspace.c			\
-			ft_isupper.c			\
-			ft_isxdigit.c			\
-			ft_isupphexa.c			\
-			ft_islowhexa.c			\
-			ft_isalhexa.c			\
-			ft_lstnew.c				\
-			ft_lstdelone.c			\
-			ft_lstdel.c				\
-			ft_lstadd.c				\
-			ft_lstiter.c			\
-			ft_lstmap.c				\
-			ft_create_elem.c		\
-			ft_list_push_back.c		\
-			ft_list_push_front.c	\
-			ft_list_size.c			\
-			ft_list_last.c			\
-			ft_list_push_params.c	\
-			ft_list_clear.c			\
-			ft_list_at.c			\
-			ft_list_reverse.c		\
-			ft_list_foreach.c		\
-			ft_list_foreach_if.c	\
-			ft_list_find.c			\
-			ft_list_remove_if.c		\
-			ft_list_merge.c			\
-			ft_list_sort.c			\
-			ft_list_reverse_fun.c	\
-			get_next_line.c			\
-			ft_abs.c				\
-			ft_putwchar.c			\
-			ft_putwstr.c			\
-			ft_putwstr_n.c			\
-			ft_wcharlen.c			\
-			ft_strwlen.c			\
-			ft_strwlen_n.c			\
-			ft_print_hex.c			\
-			ft_swap_bits.c			\
-			ft_print_bits.c			\
-			ft_max.c				\
-			ft_min.c				\
-			ft_tabintlen.c			\
-			ft_strnew_two.c			\
-			ft_strnew_three.c		\
-			ft_tabnew.c				\
-			ft_tabnew_two.c			\
-			ft_tabnew_three.c		\
-			ft_nbrlen.c				\
-			ft_nbrlen_binary.c		\
-			ft_nbrlen_octal.c		\
-			ft_nbrlen_hexa.c		\
-			ft_nbrlen_uns.c			\
-			ft_nbrcmp.c				\
-			ft_nbcmp_min.c			\
-			ft_nbcmp_max.c			\
-			ft_iseven.c				\
-			ft_ismultiple.c			\
-			ft_size_tab_base.c		\
-			ft_count_words_sep.c	\
-			ft_strlen_sep.c			\
-			ft_strrev.c				\
-			ft_swap.c				\
-			ft_sqrt.c				\
-			ft_range.c				\
-			ft_hex_to_dec.c			\
-			ft_printf.c				\
-			ft_parse.c				\
-			ft_parse_conv.c			\
-			ft_parse_flag.c			\
-			ft_parse_size.c			\
-			ft_parse_precision.c	\
-			ft_parse_modif.c		\
-			ft_reader.c				\
-			ft_write_arg.c			\
-			ft_write_c.c			\
-			ft_write_wc.c			\
-			ft_write_sgn.c			\
-			ft_write_sgn_pos.c		\
-			ft_write_sgn_neg.c		\
-			ft_write_octal.c		\
-			ft_write_b.c			\
-			ft_write_p.c			\
-			ft_write_s.c			\
-			ft_write_ws.c			\
-			ft_write_uns.c			\
-			ft_write_hexa.c			\
-			ft_write_non_valid.c	\
-			ft_write_flag.c			\
-			ft_printf_putnbr_uns.c	\
-			ft_printf_nbrlen_uns.c	\
-			ft_printf_str.c			\
-			ft_caste_sgn.c			\
-			ft_caste_uns.c			\
+INC = ./libft.h
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
-
-# Files
-
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-
-# Flags
-
-CC = gcc $(CFLAGS)
-
-CFLAGS = -Wall -Wextra -Werror
-
-# Rules
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "\033[34mCreation of $(NAME) ...\033[0m"
+	@gcc $(FLAGS) -c $(SRC) -I $(INC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\033[32m$(NAME) created\n\033[0m"
-
-$(OBJ_PATH)%.o: %.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -o $@ -c $<
 
 clean:
-	@echo "\033[33mRemoval of .o files of $(NAME) ...\033[0m"
-	@rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "\033[31mFiles .o deleted\n\033[0m"
+	@rm -rf $(OBJ)
 
-fclean: clean
-	@echo "\033[33mRemoval of $(NAME)...\033[0m"
-	@rm -f $(NAME)
-	@echo "\033[31mBinary $(NAME) deleted\n\033[0m"
+fclean:
+	@rm -rf $(NAME)
+	@rm -rf $(OBJ)
 
-re: fclean all
+re:
+	@make fclean all
 
-.PHONY: all, clean, fclean, re
-
-norme:
-	norminette $(SRC)
-	norminette $(INC_PATH)*.h
+fuck:
+	@make re
+	@make clean

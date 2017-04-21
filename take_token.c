@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 14:24:50 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/04/19 17:08:47 by ygokol           ###   ########.fr       */
+/*   Updated: 2017/04/21 18:09:01 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	take_token(t_filler *env, char *line)
 	n++;
 	env->x_token = ft_atoi(&line[n]);
 	if (!env->token)
-		if (!(env->token = ft_strnew_two(env->y_token, env->x_token)))
+		if (!(env->token = ft_double_strnew(env->y_token, env->x_token)))
 			return (-1);
 	while (i < env->y_token)
 	{

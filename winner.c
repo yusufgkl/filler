@@ -6,7 +6,7 @@
 /*   By: ygokol <ygokol@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 13:32:15 by ygokol            #+#    #+#             */
-/*   Updated: 2017/04/21 14:19:49 by ygokol           ###   ########.fr       */
+/*   Updated: 2017/04/21 20:37:30 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ int main(int args, char **argv)
 {
 	int fd;
 	char *line;
-
-	fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &line))
+	if (args < 2 || args > 2)
+		ft_putendl_fd("error", 2);
+	else
 	{
-		print_winner(line);
+		fd = open(argv[1], O_RDONLY);
+		while (get_next_line(fd, &line))
+		{
+			print_winner(line);
+		}
 	}
-return (0);
+	return (0);
 }

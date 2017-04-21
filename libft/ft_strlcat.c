@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygokol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 10:41:49 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/11/22 10:41:51 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/11/13 16:14:29 by ygokol            #+#    #+#             */
+/*   Updated: 2016/11/30 17:15:28 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-size_t	ft_strlcat(char *s1, const char *s2, size_t n)
+size_t		ft_strlcat(char *s1, const char *s2, size_t n)
 {
-	size_t i;
-	size_t j;
+	size_t check;
+	size_t min;
 
-	i = 0;
-	while (s1[i] != '\0' && i < n)
-		i++;
-	j = i;
-	while (s2[i - j] != '\0' && i < n - 1)
-	{
-		s1[i] = s2[i - j];
-		i++;
-	}
-	if (j < n)
-		s1[i] = '\0';
-	return (j + ft_strlen(s2));
+	check = ((int)n - ft_strlen(s1) - 1);
+	if (n < ft_strlen(s1))
+		min = n;
+	else
+		min = ft_strlen(s1);
+	if ((int)check > 0)
+		ft_strncat(s1, s2, check);
+	return (ft_strlen(s2) + min);
 }

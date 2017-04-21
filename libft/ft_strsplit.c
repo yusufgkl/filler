@@ -3,39 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygokol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 10:43:43 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/26 19:56:56 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/11/30 03:19:06 by ygokol            #+#    #+#             */
+/*   Updated: 2016/11/30 03:19:13 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_strsplit(char const *s, char c)
+static int		count_length(int i, char const *s, char c)
 {
-	char	**str;
-	int		i;
-	int		nb_words;
-	size_t	len;
+	int			lengthword;
 
-	if (!s)
-		return (NULL);
+	lengthword = i;
+	while (s[lengthword] != c && s[lengthword] != '\0')
+		lengthword++;
+	lengthword = lengthword - i;
+	return (lengthword);
+}
+
+static int		ft_countwords(char const *s, char c)
+{
+	int			i;
+	int			nbwords;
+
 	i = 0;
-	nb_words = ft_count_words_sep(s, c);
-	if (!(str = ((char**)malloc(sizeof(*str) * (nb_words + 1)))))
-		return (NULL);
-	while (nb_words--)
+	nbwords = 0;
+	while (s[i] != '\0')
 	{
-		while (*s != '\0' && *s == c)
-			s++;
-		len = ft_strlen_sep(s, c);
-		str[i] = ft_strsub(s, 0, len);
-		if (str[i] == '\0')
-			return (NULL);
-		s = s + ft_strlen_sep(s, c);
-		i++;
+		if (s[i] == c)
+			i++;
+		else
+		{
+			while (s[i] != c && s[i] != '\0')
+				i++;
+			nbwords++;
+		}
 	}
-	str[i] = NULL;
+	return (nbwords);
+}
+
+static char		**do_split(int i, char const *s, char c, char **str)
+{
+	int			lengthword;
+	int			j;
+	int			k;
+
+	j = 0;
+	k = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			i++;
+		else
+		{
+			lengthword = count_length(i, s, c);
+			str[j] = (char *)malloc((lengthword + 1) * sizeof(char));
+			while (lengthword-- > 0)
+			{
+				str[j][k++] = s[i++];
+			}
+			str[j++][k] = '\0';
+			k = 0;
+			lengthword = 0;
+		}
+	}
+	str[j] = NULL;
 	return (str);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	int			i;
+	int			j;
+	char		**str;
+	int			nbwords;
+	char		*str2;
+
+	i = 0;
+	j = 0;
+	if (c && s)
+	{
+		nbwords = ft_countwords(s, c);
+		str = (char **)malloc((nbwords + 1) * sizeof(char *));
+		if (str == 0)
+			return (0);
+		str = do_split(i, s, c, str);
+		return (str);
+	}
+	else
+	{
+		str2 = ft_strnew(1);
+		return ((char **)str2);
+	}
 }

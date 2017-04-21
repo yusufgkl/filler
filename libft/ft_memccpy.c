@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygokol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 10:37:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/11/22 10:37:25 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/11/11 20:21:28 by ygokol            #+#    #+#             */
+/*   Updated: 2016/11/14 21:03:35 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	*ft_memccpy(void *str, const void *str2, int c, size_t len)
 {
-	unsigned char	*oct1;
-	unsigned char	*oct2;
+	unsigned char	*p;
+	unsigned char	*p2;
+	unsigned char	c1;
 
-	oct1 = (unsigned char*)dst;
-	oct2 = (unsigned char*)src;
-	while (n--)
+	p = (unsigned char *)str;
+	p2 = (unsigned char *)str2;
+	c1 = (unsigned char)c;
+	while (len)
 	{
-		*oct1 = *oct2;
-		if (*oct1 == (unsigned char)c)
-			return (oct1 + 1);
-		oct1++;
-		oct2++;
+		if ((*p++ = *p2++) == c1)
+			return (p);
+		len--;
 	}
 	return (NULL);
 }
