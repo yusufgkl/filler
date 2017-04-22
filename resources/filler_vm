@@ -127,7 +127,6 @@ class Plateau
 
 	def show_mapcontent(fd, piece_char = nil, y = 0, x = 0)
 		fd.write "Plateau #{@map_row} #{@map_col}:\n"
-
 		fd.write "    "
 		for i in 0..(@map_col - 1)
 			fd.write (i % 10).to_s
@@ -551,7 +550,7 @@ if __FILE__ == $0
 					end
 
 					if (init.verbose > 0 && player.live > 0)
-						map.show_mapcontent($stdout, player.piece_char.downcase, nb[0].to_i, nb[1].to_i)
+							map.show_mapcontent($stdout, player.piece_char.downcase, nb[0].to_i, nb[1].to_i)
 					end
 				end
 			end

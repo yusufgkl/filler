@@ -6,7 +6,7 @@
 #    By: ygokol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 19:40:51 by ygokol            #+#    #+#              #
-#    Updated: 2017/04/21 20:53:19 by ygokol           ###   ########.fr        #
+#*   Updated: 2017/04/22 13:36:59 by ygokol           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ SRC =		main.c			\
 			take_token.c	\
 			push.c	\
 			check_token.c	\
+			ft_double_strnew.c \
 			algo.c			\
 
-OBJ = $(SRC_NAME:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CC = gcc $(CFLAGS)
 
@@ -46,8 +47,8 @@ $(NAME):
 	@make -C libft
 	@echo "$(GRE)===== libft                   [OK]=====$(DEF)";
 	@echo "$(YEL)===== Creation de ygokol.filler   =====$(DEF)";
-	$(CC) -c $(SRC)
-	$(CC) -o $(NAME) $(OBJ) libft/libft.a
+	@$(CC) -c $(SRC)
+	@$(CC) -o $(NAME) $(OBJ) libft/libft.a
 	@echo "$(GRE)===== ygokol.filler cree      [OK]=====$(DEF)";
 
 clean:
@@ -73,7 +74,7 @@ re:
 winner:
 	@echo "$(YEL)===== Creation de winner          =====$(DEF)";
 	@gcc -c winner.c
-	@gcc -o winner libft/libft.a
+	@gcc -o winner winner.o libft/libft.a
 	@echo "$(GRE)===== winner cree                 =====$(DEF)";
 
 norme:

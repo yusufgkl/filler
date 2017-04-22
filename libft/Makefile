@@ -6,11 +6,13 @@
 #    By: ygokol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/13 19:02:07 by ygokol            #+#    #+#              #
-#    Updated: 2017/04/21 18:05:56 by ygokol           ###   ########.fr        #
+#*   Updated: 2017/04/22 13:36:19 by ygokol           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+CC = gcc
 
 SRC = ./ft_atoi.c\
 	  ./ft_bzero.c\
@@ -149,10 +151,24 @@ INC = ./libft.h
 
 FLAGS = -Wall -Wextra -Werror
 
+DEF =		\033[0m
+GRA =		\033[1m
+SOU =		\033[4m
+BLI =		\033[5m
+BLA =		\033[30m
+RED =		\033[31m
+GRE =		\033[32m
+YEL =		\033[33m
+BLU =		\033[34m
+PUR =		\033[35m
+CYA =		\033[36m
+WHI =		\033[37m
+
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) -c $(SRC) -I $(INC)
+	@$(CC) $(FLAGS) -c $(SRC) -I $(INC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
