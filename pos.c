@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position.c                                         :+:      :+:    :+:   */
+/*   pos.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygokol <ygokol@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/20 14:27:31 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/04/19 17:08:33 by ygokol           ###   ########.fr       */
+/*   Created: 2017/04/23 12:08:40 by ygokol            #+#    #+#             */
+/*   Updated: 2017/04/23 12:16:14 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void		position(t_filler *env)
+void	get_pos(t_filler *pgm)
 {
-	int		i;
-	int		j;
+	int i;
+	int j;
 
 	i = 0;
-	env->oppon = (env->user == 'O') ? 'X' : 'O';
-	while (i < env->y_map)
+	while (i < pgm->mapy)
 	{
 		j = 0;
-		while (j < env->x_map)
+		while (j < pgm->mapx)
 		{
-			if (env->map[i][j] == env->oppon)
+			if (pgm->map[i][j] == pgm->enemy_id)
 			{
-				env->o_pos_x = j;
-				env->o_pos_y = i;
+				pgm->o_posx = j;
+				pgm->o_posy = i;
 			}
-			if (env->map[i][j] == env->user)
+			if (pgm->map[i][j] == pgm->enemy_id)
 			{
-				env->u_pos_x = j;
-				env->u_pos_y = i;
+				pgm->m_posx = j;
+				pgm->m_posy = i;
 			}
 			j++;
 		}
 		i++;
 	}
-	env->algo = (env->o_pos_y > env->u_pos_y) ? 1 : 0;
+	if (pgm->o_posy > pgm->m_posy)
+		pgm->algo = 1;
+	else
+		pgm->algo = 0;
 }

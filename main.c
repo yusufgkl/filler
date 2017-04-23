@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygokol <ygokol@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/19 14:24:44 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/04/21 19:34:31 by ygokol           ###   ########.fr       */
+/*   Created: 2017/04/22 19:46:28 by ygokol            #+#    #+#             */
+/*   Updated: 2017/04/23 13:42:19 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		main(void)
+void players_ids(t_filler *pgm, char *line)
+{
+	pgm->player_id = ft_atoi(line + 10) == 1 ? 'O' : 'X';
+	pgm->enemy_id = pgm->player_id == 'O' ? 'X' : 'O';
+}
+
+int main(void)
 {
 	char		*line;
-	t_filler	*env;
+	t_filler	*pgm;
 
-	if (!(env = ft_memalloc(sizeof(t_filler))))
+	if (!(pgm = ft_memalloc(sizeof(t_filler))))
 		return (-1);
 	get_next_line(0, &line);
-	env->user = (ft_atoi(line + 10) == 1) ? 'O' : 'X';
+	players_ids(pgm, line);
 	while (42)
 	{
-		if (env->gameover == 1)
-			break ;
 		get_next_line(0, &line);
-		env->y_map = ft_atoi(&line[8]);
-		env->x_map = ft_atoi(&line[11]);
-		take_map(env);
-		if (algo(env) == 0)
-			env->ko = 1;
-		push_token(env);
+		pgm->mapy = ft_atoi(&line[8]);
+		pgm->mapx = ft_atoi(&line[11]);
+		get_map_id(pgm);
+		get_map(pgm);
+		if (algo(pgm) == 0)
+			break ;
+			
+			push_piece(pgm);
 	}
-	free(env);
 	return (0);
 }

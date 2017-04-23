@@ -6,7 +6,7 @@
 /*   By: ygokol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 19:56:27 by ygokol            #+#    #+#             */
-/*   Updated: 2016/11/27 11:40:04 by ygokol           ###   ########.fr       */
+/*   Updated: 2017/04/23 12:45:02 by ygokol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,5 @@
 
 void	ft_putstr_fd(char *str, int fd)
 {
-	int i;
-
-	i = 0;
-	if (!str)
-		return ;
-	while (str[i] != '\0')
-	{
-		ft_putchar_fd(str[i], fd);
-		i = i + 1;
-	}
+	write(fd, str, ft_strlen(str));
 }

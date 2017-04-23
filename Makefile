@@ -6,20 +6,19 @@
 #    By: ygokol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 19:40:51 by ygokol            #+#    #+#              #
-#*   Updated: 2017/04/22 13:36:59 by ygokol           ###   ########.fr       *#
+#*   Updated: 2017/04/23 13:25:41 by ygokol           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ygokol.filler
 
-SRC =		main.c			\
-			map.c		\
-			pos.c		\
-			take_token.c	\
-			push.c	\
-			check_token.c	\
+SRC =		main.c	\
+			map.c	\
+			pos.c	\
+			algo.c	\
+			algo_map.c	\
+			piece.c	\
 			ft_double_strnew.c \
-			algo.c			\
 
 OBJ = $(SRC:.c=.o)
 
